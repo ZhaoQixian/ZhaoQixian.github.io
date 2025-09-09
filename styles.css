@@ -83,6 +83,24 @@ body {
     color: var(--primary-color);
 }
 
+/* Active nav link (preferred to set via JS but CSS fallback here) */
+.nav-menu a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+    position: relative;
+}
+
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -290,6 +308,15 @@ section {
     justify-content: center;
 }
 
+.profile-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: var(--shadow-lg);
+    border: 4px solid white;
+}
+
 .image-placeholder {
     width: 250px;
     height: 250px;
@@ -406,82 +433,7 @@ section {
     margin-right: 4px;
 }
 
-/* Skills Section */
-.skills {
-    background: var(--bg-secondary);
-}
-
-.skills-content {
-    display: grid;
-    gap: 3rem;
-}
-
-.skill-category h3 {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-}
-
-.skill-category i {
-    color: var(--primary-color);
-}
-
-.skill-items {
-    display: grid;
-    gap: 1rem;
-}
-
-.skill-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.skill-name {
-    min-width: 120px;
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-.skill-bar {
-    flex: 1;
-    height: 8px;
-    background: var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.skill-progress {
-    height: 100%;
-    background: var(--gradient-primary);
-    border-radius: 4px;
-    transition: width 2s ease-in-out;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.skill-tag {
-    background: white;
-    color: var(--text-primary);
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-}
-
-.skill-tag:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
+/* Skills section removed from HTML; styles kept out to reduce unused CSS. Move any re-used styles into components when needed. */
 
 /* Contact Section */
 .contact-content {
@@ -556,6 +508,23 @@ section {
 .contact-cta p {
     color: var(--text-secondary);
     margin-bottom: 2rem;
+}
+
+/* Selfie inside contact CTA: scale but don't crop, center and constrain to UI */
+.contact-selfie {
+    display: block;
+    margin: 0 auto 0.75rem;
+    width: 100%;
+    max-width: 180px; /* fits UI on desktop */
+    height: auto; /* preserve aspect ratio */
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 480px) {
+    .contact-selfie {
+        max-width: 140px; /* slightly smaller on very small screens */
+    }
 }
 
 .resume-placeholder {
@@ -662,6 +631,23 @@ section {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Resume specific styles */
+    .resume-block {
+        margin-bottom: 1.25rem;
+        color: var(--text-secondary);
+    }
+
+    .resume-block h4 {
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        font-size: 1.05rem;
+    }
+
+    @media (max-width: 1024px) {
+        .nav-container { height: 64px; }
+        .nav-logo a { font-size: 1.25rem; }
     }
 
     .stats {
