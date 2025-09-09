@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhao Qixian - Data Science & AI Undergraduate</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Preload main stylesheet for faster first render -->
+    <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Preconnect to Google Fonts for lower latency -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -167,48 +172,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-hamburger"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3>Fast Food Management System</h3>
-                            <p>Complete ordering and management system for fast food restaurants built with Java and web technologies. Features comprehensive order processing and management capabilities.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">Management System</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/SC2002_FOMS" target="_blank" class="btn btn-small">
-                                    <i class="fab fa-github"></i> View Code
-                                </a>
-                                <div class="project-stats">
-                                    <span><i class="fas fa-code-branch"></i> 1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3>DomGlobal Prediction</h3>
-                            <p>Advanced machine learning project focused on predictive modeling and data analysis using sophisticated algorithms and statistical methods.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Machine Learning</span>
-                                <span class="tech-tag">Jupyter</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/DomGlobal_Prediction" target="_blank" class="btn btn-small">
-                                    <i class="fab fa-github"></i> View Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Removed two projects per request: Fast Food Management System, DomGlobal Prediction -->
                 </div>
             </div>
         </section>
@@ -279,6 +243,6 @@
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

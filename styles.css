@@ -597,6 +597,7 @@ section {
         background: white;
         width: 100%;
         text-align: center;
+    z-index: 1100; /* ensure mobile menu sits above other content */
         transition: 0.3s;
         box-shadow: var(--shadow-md);
         padding: 2rem 0;
