@@ -515,15 +515,16 @@ section {
     display: block;
     margin: 0 auto 0.75rem;
     width: 100%;
-    max-width: 180px; /* fits UI on desktop */
-    height: auto; /* preserve aspect ratio */
+    max-width: 180px !important; /* fits UI on desktop; !important to avoid accidental override on deployment */
+    height: auto !important; /* preserve aspect ratio */
+    object-fit: cover; /* ensure consistent cropping */
     border-radius: 8px;
     box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 480px) {
     .contact-selfie {
-        max-width: 140px; /* slightly smaller on very small screens */
+        max-width: 140px !important; /* slightly smaller on very small screens */
     }
 }
 
