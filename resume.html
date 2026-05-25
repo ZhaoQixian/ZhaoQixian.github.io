@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        // Prevent Flash of Untranslated Content (FOUT)
+        document.documentElement.setAttribute('lang', localStorage.getItem('lang') || 'en');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Zhao Qixian</title>
@@ -15,14 +19,19 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="/">Zhao Qixian</a>
+                <a href="/"><span lang="en">Zhao Qixian</span><span lang="zh">赵启先</span></a>
             </div>
             <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/index.html#projects">Projects</a></li>
-                <li><a href="/index.html#contact">Contact</a></li>
-                <li><a href="resume.html">Resume</a></li>
+                <li><a href="/"><span lang="en">Home</span><span lang="zh">首页</span></a></li>
+                <li><a href="/index.html#projects"><span lang="en">Projects</span><span lang="zh">项目</span></a></li>
+                <li><a href="/index.html#contact"><span lang="en">Contact</span><span lang="zh">联系我</span></a></li>
+                <li><a href="resume.html"><span lang="en">Resume</span><span lang="zh">个人简历</span></a></li>
             </ul>
+            <div class="lang-switcher">
+                <button id="lang-btn" class="lang-btn" aria-label="Toggle language">
+                    <i class="fas fa-globe"></i> <span>中文</span>
+                </button>
+            </div>
             <div class="hamburger" aria-label="Toggle navigation">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -38,64 +47,119 @@
                     <img src="assets/images/MySelfie.jpg" alt="Zhao Qixian" class="contact-selfie contact-selfie--img" width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:8px;" />
                 </div>
                 <div style="flex:1;min-width:280px;">
-                    <h1 style="margin-bottom:0.25rem;">Zhao Qixian</h1>
-                    <p style="color:var(--text-secondary);margin-top:0;">Bachelor of Science in Data Science and Artificial Intelligence | Minor in Business | NTU — Year 4</p>
-                    <p style="margin-top:0.5rem;"><strong>Email:</strong> <a href="mailto:qzhao010@e.ntu.edu.sg">qzhao010@e.ntu.edu.sg</a></p>
-                    <p style="margin-top:0.25rem;"><strong>Phone/WhatsApp:</strong> <a href="tel:+6583868786">+65 83868786</a></p>
-                    <p style="margin-top:0.25rem;"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/zhaoqixian/" target="_blank">linkedin.com/in/zhaoqixian</a></p>
-                    <p style="margin-top:0.25rem;"><strong>GitHub:</strong> <a href="https://github.com/ZhaoQixian" target="_blank">github.com/ZhaoQixian</a></p>
-                    <p style="margin-top:0.25rem;"><strong>Website:</strong> <a href="https://zhaoqixian.com" target="_blank">zhaoqixian.com</a></p>
+                    <h1 style="margin-bottom:0.25rem;"><span lang="en">Zhao Qixian</span><span lang="zh">赵启先</span></h1>
+                    <p style="color:var(--text-secondary);margin-top:0;">
+                        <span lang="en">Bachelor of Science in Data Science and Artificial Intelligence | Minor in Business | NTU — Year 4</span>
+                        <span lang="zh">数据科学与人工智能理学士 | 商业副修 | 南洋理工大学 — 大四</span>
+                    </p>
+                    <p style="margin-top:0.5rem;"><strong><span lang="en">Email:</span><span lang="zh">邮箱：</span></strong> <a href="mailto:qzhao010@e.ntu.edu.sg">qzhao010@e.ntu.edu.sg</a></p>
+                    <p style="margin-top:0.25rem;"><strong><span lang="en">Phone/WhatsApp:</span><span lang="zh">电话/WhatsApp：</span></strong> <a href="tel:+6583868786">+65 83868786</a></p>
+                    <p style="margin-top:0.25rem;"><strong><span lang="en">LinkedIn:</span><span lang="zh">领英 LinkedIn：</span></strong> <a href="https://www.linkedin.com/in/zhaoqixian/" target="_blank">linkedin.com/in/zhaoqixian</a></p>
+                    <p style="margin-top:0.25rem;"><strong><span lang="en">GitHub:</span><span lang="zh">GitHub 主页：</span></strong> <a href="https://github.com/ZhaoQixian" target="_blank">github.com/ZhaoQixian</a></p>
+                    <p style="margin-top:0.25rem;"><strong><span lang="en">Website:</span><span lang="zh">个人网站：</span></strong> <a href="https://zhaoqixian.com" target="_blank">zhaoqixian.com</a></p>
                     
                     <div style="margin-top:1rem;">
-                        <a href="assets/pdfs/resume.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i> View PDF</a>
-                        <a href="index.html" class="btn btn-secondary" style="margin-left:0.5rem;">Back to Portfolio</a>
+                        <a href="assets/pdfs/resume.pdf" target="_blank" class="btn btn-primary">
+                            <span lang="en"><i class="fas fa-file-pdf"></i> View PDF</span>
+                            <span lang="zh"><i class="fas fa-file-pdf"></i> 浏览 PDF</span>
+                        </a>
+                        <a href="index.html" class="btn btn-secondary" style="margin-left:0.5rem;">
+                            <span lang="en">Back to Portfolio</span>
+                            <span lang="zh">返回主页</span>
+                        </a>
                     </div>
                 </div>
 
                 <div style="flex:1.5;min-width:300px;">
-                    <h2 class="section-title">Summary</h2>
-                    <p>As a Data Science & AI undergraduate at Nanyang Technological University (Year 4) with a Minor in Business, I combine strong programming and analytical skills with business acumen. I have experience building ML pipelines, web apps, and automation solutions using Python, R, SQL, Java, JavaScript, and UiPath. I expand my skillset in prompt engineering, Linux, cybersecurity, and financial market analysis. Recipient of the NTU Science & Engineering Scholarship and MOE SM1 scholarship. Seeking data science or AI engineering roles to drive measurable real-world impact.</p>
+                    <h2 class="section-title"><span lang="en">Summary</span><span lang="zh">个人简介</span></h2>
+                    <p lang="en">As a Data Science & AI undergraduate at Nanyang Technological University (Year 4) with a Minor in Business, I combine strong programming and analytical skills with business acumen. I have experience building ML pipelines, web apps, and automation solutions using Python, R, SQL, Java, JavaScript, and UiPath. I expand my skillset in prompt engineering, Linux, cybersecurity, and financial market analysis. Recipient of the NTU Science & Engineering Scholarship and MOE SM1 scholarship. Seeking data science or AI engineering roles to drive measurable real-world impact.</p>
+                    <p lang="zh">作为南洋理工大学 (NTU) 数据科学与人工智能专业大四学生（副修商科），我将扎实的编程与分析能力与敏锐的商业嗅觉相结合。在机器学习管道构建、Web 应用开发及 UiPath 流程自动化方面积累了丰富的实践经验，熟练运用 Python, R, SQL, Java, JavaScript 等语言。同时积极拓展在提示词工程、Linux、网络安全及金融市场分析等前沿领域的知识。作为 NTU 科学与工程奖学金及新加坡教育部 SM1 全额奖学金获得者，我正寻求数据科学或 AI 工程领域的全职/实习机会，致力于利用技术创造可量化的实际价值。</p>
                 </div>
             </div>
 
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Work Experience</h2>
+                <h2 class="section-title"><span lang="en">Work Experience</span><span lang="zh">工作经历</span></h2>
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Data Science Intern — Alstom</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">June 2026 – Present</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Data Science Intern — Alstom</span>
+                            <span lang="zh">数据科学实习生 — 阿尔斯通 (Alstom)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">June 2026 – Present</span>
+                            <span lang="zh">2026年6月 – 至今</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Incoming summer intern in innovation center, Alstom Singapore.</li>
+                        <li>
+                            <span lang="en">Incoming summer intern in innovation center, Alstom Singapore.</span>
+                            <span lang="zh">新加坡阿尔斯通创新中心入职数据科学实习生。</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Machine Learning and AI Engineer Intern — SLB (Schlumberger)</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">July 2025 – Dec 2025</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Machine Learning and AI Engineer Intern — SLB (Schlumberger)</span>
+                            <span lang="zh">机器学习与人工智能工程师实习生 — 斯伦贝谢 (SLB)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">July 2025 – Dec 2025</span>
+                            <span lang="zh">2025年7月 – 2025年12月</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Designed and deployed an enterprise level Document Package Verification Flask webapp that automates compliance checks using Retrieval Augmented Generation (RAG) over Azure AI Search.</li>
-                        <li>Implemented multi-stage filtering that narrows ~200 pages to ~50 for LLM vision analysis, cutting multimodal calls by ~70% and reducing overall processing cost by ~50%.</li>
-                        <li>Developed hybrid retrieval with re-ranking and evaluation using query rewritten rules.</li>
-                        <li>Created Analysis Report and Document Viewer side by side interface, with reference link to target chunk.</li>
-                        <li>Productionized Azure AD Single Sign On with Role-Based Access Control (SSO RBAC).</li>
+                        <li>
+                            <span lang="en">Designed and deployed an enterprise level Document Package Verification Flask webapp that automates compliance checks using Retrieval Augmented Generation (RAG) over Azure AI Search.</span>
+                            <span lang="zh">设计并部署了企业级文档包验证 Flask Web 应用程序，在 Azure AI Search 上基于检索增强生成 (RAG) 自动执行合规性检查。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Implemented multi-stage filtering that narrows ~200 pages to ~50 for LLM vision analysis, cutting multimodal calls by ~70% and reducing overall processing cost by ~50%.</span>
+                            <span lang="zh">实现多阶段过滤机制，将用于 LLM 视觉分析的文档从 ~200 页缩减至 ~50 页，减少了 ~70% 的多模态调用，并降低了整体处理成本达 ~50%。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Developed hybrid retrieval with re-ranking and evaluation using query rewritten rules.</span>
+                            <span lang="zh">使用查询重写规则开发了包含重排与评估的混合检索系统。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Created Analysis Report and Document Viewer side by side interface, with reference link to target chunk.</span>
+                            <span lang="zh">创建了分析报告与文档查看器的双栏并排界面，实现源文档目标分块的精准引用链接。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Productionized Azure AD Single Sign On with Role-Based Access Control (SSO RBAC).</span>
+                            <span lang="zh">实现了具有基于角色访问控制的 Azure AD 单点登录系统 (SSO RBAC) 的生产部署。</span>
+                        </li>
                         <li><strong>Tech Stack:</strong> PyTorch, YOLO, OpenCV, PyMuPDF, ReportLab, Azure DevOps CI/CD, OpenAI.</li>
                     </ul>
                 </div>
 
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Research Assistant — Various Institutions, NTU</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Sep 2024 – Present</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Research Assistant — Various Institutions, NTU</span>
+                            <span lang="zh">研究助理 — 南洋理工大学各研究院</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Sep 2024 – Present</span>
+                            <span lang="zh">2024年9月 – 至今</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Processed audio language data using DaVinci Resolve and Excel (6 months with School of Humanities).</li>
-                        <li>Hosted 11 sessions eye-tracking data collection using Pupil Lab smart glasses (2 months with Nanyang Business School).</li>
-                        <li>Hosted 9 cognitive testing sessions (5 months and ongoing with Centre for Lifelong Learning).</li>
+                        <li>
+                            <span lang="en">Processed audio language data using DaVinci Resolve and Excel (6 months with School of Humanities).</span>
+                            <span lang="zh">使用 DaVinci Resolve 和 Excel 处理语音语言数据（在人文学院工作 6 个月，服务于新加坡华族文化中心资助的新加坡华语语言遗产数字化项目）。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Hosted 11 sessions eye-tracking data collection using Pupil Lab smart glasses (2 months with Nanyang Business School).</span>
+                            <span lang="zh">使用 Pupil Lab 智能眼镜主持了 11 场眼动追踪数据采集工作（在南洋商学院工作 2 个月）。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Hosted 9 cognitive testing sessions (5 months and ongoing with Centre for Lifelong Learning).</span>
+                            <span lang="zh">主持了 9 场认知测试（在终身学习研究中心工作 5 个月并持续进行中）。</span>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -103,38 +167,77 @@
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Research Experience</h2>
+                <h2 class="section-title"><span lang="en">Research Experience</span><span lang="zh">学术科研经历</span></h2>
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Student Researcher Technical — AnniZ Lab, NTU</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Jan 2026 – Present</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Student Researcher Technical — AnniZ Lab, NTU</span>
+                            <span lang="zh">技术学生研究员 — 南洋理工大学 AnniZ 实验室</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Jan 2026 – Present</span>
+                            <span lang="zh">2026年1月 – 至今</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Work in Progress: Temporal Knowledge Graph and GNN for Gut Microbiome Hypothesis Generation.</li>
+                        <li>
+                            <span lang="en">Work in Progress: Temporal Knowledge Graph and GNN for Gut Microbiome Hypothesis Generation.</span>
+                            <span lang="zh">进行中项目：利用时序知识图谱与图神经网络 (GNN) 开展肠道微生物组假设生成。</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Student Researcher (URECA Program) — School of Mechanical and Aerospace Engineering, NTU</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">July 2025 – Apr 2026</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Student Researcher (URECA Program) — School of Mechanical and Aerospace Engineering, NTU</span>
+                            <span lang="zh">学生研究员 (URECA 优秀本科生研究计划) — 南大机械与宇航工程学院</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">July 2025 – Apr 2026</span>
+                            <span lang="zh">2025年7月 – 2026年4月</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Deep Learning to Automate Detection of Scoliosis Cobb Angle from Clinical Paediatric Radiographs.</li>
-                        <li>Trained models for spinal landmark localization, achieving mAP50 of 99.1% and recall of 97.0%.</li>
-                        <li>Achieved clinical grade measurement accuracy with a MAE of 3.43° and RMSE of 4.38°.</li>
-                        <li>Collaborated with KK Women’s and Children’s Hospital and SingHealth Intellectual Property Office.</li>
+                        <li>
+                            <span lang="en">Deep Learning to Automate Detection of Scoliosis Cobb Angle from Clinical Paediatric Radiographs.</span>
+                            <span lang="zh">基于深度学习实现儿童临床放射影像的脊柱侧弯 Cobb 角自动检测。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Trained models for spinal landmark localization, achieving mAP50 of 99.1% and recall of 97.0%.</span>
+                            <span lang="zh">训练脊柱关键点定位模型，实现了 99.1% 的 mAP50 和 97.0% 的召回率。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Achieved clinical grade measurement accuracy with a MAE of 3.43° and RMSE of 4.38°.</span>
+                            <span lang="zh">达到临床级别的测量精度，平均绝对误差 (MAE) 为 3.43°，均方根误差 (RMSE) 为 4.38°。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Collaborated with KK Women’s and Children’s Hospital and SingHealth Intellectual Property Office.</span>
+                            <span lang="zh">与新加坡竹脚妇幼医院 (KKH) 和新保集团 (SingHealth) 知识产权办公室开展紧密合作。</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Student Researcher — National Institute of Education, NTU</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Oct 2024 – Jul 2025</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Student Researcher — National Institute of Education, NTU</span>
+                            <span lang="zh">学生研究员 — 新加坡国立教育学院 (NIE)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Oct 2024 – Jul 2025</span>
+                            <span lang="zh">2024年10月 – 2025年7月</span>
+                        </span>
                     </div>
                     <ul>
-                        <li>Paper published and presented in ASEE Conference 2025 Montreal, Canada: <em>Enhancing AI Literacy: Exploring Trust and Ethical Decision-Making through the Prisoner's Dilemma in Game Theory</em>.</li>
-                        <li>Co-author with Dr. Ibrahim H. Yeter.</li>
+                        <li>
+                            <span lang="en">Paper published and presented in ASEE Conference 2025 Montreal, Canada: <em>Enhancing AI Literacy: Exploring Trust and Ethical Decision-Making through the Prisoner's Dilemma in Game Theory</em>.</span>
+                            <span lang="zh">论文发表并在 2025 年加拿大蒙特利尔美国工程教育学会 (ASEE) 年会上宣讲：《增强 AI 素养：通过博弈论中的囚徒困境探讨信任与伦理决策》。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Co-author with Dr. Ibrahim H. Yeter.</span>
+                            <span lang="zh">与 Ibrahim H. Yeter 博士合作撰写。</span>
+                        </li>
                         <li><strong>DOI:</strong> <a href="https://doi.org/10.18260/1-2--55858" target="_blank">10.18260/1-2--55858</a></li>
                     </ul>
                 </div>
@@ -143,128 +246,268 @@
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Education</h2>
+                <h2 class="section-title"><span lang="en">Education</span><span lang="zh">教育背景</span></h2>
                 <div class="education-item" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Nanyang Technological University, Singapore</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Aug 2023 – May 2027</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Nanyang Technological University, Singapore</span>
+                            <span lang="zh">新加坡南洋理工大学 (NTU)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Aug 2023 – May 2027</span>
+                            <span lang="zh">2023年8月 – 2027年5月</span>
+                        </span>
                     </div>
-                    <p style="margin: 0.25rem 0;">Bachelor of Science in Data Science and Artificial Intelligence, Minor in Business, Year 4</p>
-                    <p style="margin: 0.25rem 0;"><strong>CGPA:</strong> 4.55/5.00, First Class Honours Degree</p>
-                    <p style="margin: 0.25rem 0;"><strong>Major Electives:</strong> Intelligent Agent, Cloud Computing</p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en">Bachelor of Science in Data Science and Artificial Intelligence, Minor in Business, Year 4</span>
+                        <span lang="zh">数据科学与人工智能理学士，商业副修，大四</span>
+                    </p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en"><strong>CGPA:</strong> 4.55/5.00, First Class Honours Degree</span>
+                        <span lang="zh"><strong>CGPA:</strong> 4.55/5.00，首要荣誉学位 (First Class Honours)</span>
+                    </p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en"><strong>Major Electives:</strong> Intelligent Agent, Cloud Computing</span>
+                        <span lang="zh"><strong>专业选修课：</strong> 智能体 (Intelligent Agent), 云计算 (Cloud Computing)</span>
+                    </p>
                 </div>
 
                 <div class="education-item" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">École Normale Supérieure – Paris Sciences et Lettres Université, France</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Jan 2026 – May 2026</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">École Normale Supérieure – Paris Sciences et Lettres Université, France</span>
+                            <span lang="zh">法国巴黎高等师范学校 (ENS) — 巴黎科学艺术人文大学</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Jan 2026 – May 2026</span>
+                            <span lang="zh">2026年1月 – 2026年5月</span>
+                        </span>
                     </div>
-                    <p style="margin: 0.25rem 0;">Semester Exchange in département d’informatique: Machine Learning, Cryptography, AI in Finance</p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en">Semester Exchange in département d’informatique: Machine Learning, Cryptography, AI in Finance</span>
+                        <span lang="zh">计算机系学期交换：机器学习、密码学、金融人工智能</span>
+                    </p>
                 </div>
 
                 <div class="education-item" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Seoul National University, Seoul, South Korea</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Jun 2024 – Jul 2024</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Seoul National University, Seoul, South Korea</span>
+                            <span lang="zh">韩国首尔大学 (SNU)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Jun 2024 – Jul 2024</span>
+                            <span lang="zh">2024年6月 – 2024年7月</span>
+                        </span>
                     </div>
-                    <p style="margin: 0.25rem 0;">Summer Exchange in department of economics: Game Theory</p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en">Summer Exchange in department of economics: Game Theory</span>
+                        <span lang="zh">经济系暑期交换：博弈论 (Game Theory)</span>
+                    </p>
                 </div>
 
                 <div class="education-item" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Nanyang Junior College, Singapore</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Feb 2021 – Nov 2022</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Nanyang Junior College, Singapore</span>
+                            <span lang="zh">新加坡南洋初级学院 (NYJC)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Feb 2021 – Nov 2022</span>
+                            <span lang="zh">2021年2月 – 2022年11月</span>
+                        </span>
                     </div>
-                    <p style="margin: 0.25rem 0;">Achieved 4 Distinctions (A) in H2 Math, Physics, Economics, Chemistry in Singapore A Levels.</p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en">Achieved 4 Distinctions (A) in H2 Math, Physics, Economics, Chemistry in Singapore A Levels.</span>
+                        <span lang="zh">新加坡 A 水准会考中，荣获 H2 数学、物理、经济、化学 4 科特优 (A)。</span>
+                    </p>
                 </div>
 
                 <div class="education-item" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                        <h3 style="margin-bottom: 0.25rem;">Catholic High School, Singapore</h3>
-                        <span style="color: var(--text-secondary); font-style: italic;">Feb 2019 – Nov 2020</span>
+                        <h3 style="margin-bottom: 0.25rem;">
+                            <span lang="en">Catholic High School, Singapore</span>
+                            <span lang="zh">新加坡公教中学 (Catholic High School)</span>
+                        </h3>
+                        <span style="color: var(--text-secondary); font-style: italic;">
+                            <span lang="en">Feb 2019 – Nov 2020</span>
+                            <span lang="zh">2019年2月 – 2020年11月</span>
+                        </span>
                     </div>
-                    <p style="margin: 0.25rem 0;">Achieved 10 Distinctions (8 A1 and 2 A2) in Singapore O Levels. Top in cohort.</p>
+                    <p style="margin: 0.25rem 0;">
+                        <span lang="en">Achieved 10 Distinctions (8 A1 and 2 A2) in Singapore O Levels. Top in cohort.</span>
+                        <span lang="zh">新加坡 O 水准会考中，荣获 10 科特优（8 科 A1 和 2 科 A2），位列年级前茅。</span>
+                    </p>
                 </div>
             </section>
 
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Skills</h2>
-                <p><strong>Languages:</strong> English (Native), Mandarin (Native), French (Elementary)</p>
-                <p><strong>Technical Skills:</strong> Proficient Programming Languages: Python, R, Java, JavaScript, Linux, SQL</p>
-                <p><strong>Data Science & Analysis:</strong> Python libraries and ML models, Google Data Analytics Specialization, Prompt Engineering and Analytics Specialization</p>
-                <p><strong>Software Proficiency:</strong> Power BI and Excel for data analysis and visualization, UiPath for automation</p>
+                <h2 class="section-title"><span lang="en">Skills</span><span lang="zh">技能专长</span></h2>
+                <p>
+                    <span lang="en"><strong>Languages:</strong> English (Native), Mandarin (Native), French (Elementary)</span>
+                    <span lang="zh"><strong>语言能力：</strong> 英语（母语级）、中文（母语级）、法语（初级）</span>
+                </p>
+                <p>
+                    <span lang="en"><strong>Technical Skills:</strong> Proficient Programming Languages: Python, R, Java, JavaScript, Linux, SQL</span>
+                    <span lang="zh"><strong>编程语言：</strong> 熟练掌握 Python, R, Java, JavaScript, Linux, SQL</span>
+                </p>
+                <p>
+                    <span lang="en"><strong>Data Science & Analysis:</strong> Python libraries and ML models, Google Data Analytics Specialization, Prompt Engineering and Analytics Specialization</span>
+                    <span lang="zh"><strong>数据科学与分析：</strong> 常用 Python 数据分析库与机器学习模型、谷歌数据分析专业认证、提示词工程与分析专业化方向</span>
+                </p>
+                <p>
+                    <span lang="en"><strong>Software Proficiency:</strong> Power BI and Excel for data analysis and visualization, UiPath for automation</span>
+                    <span lang="zh"><strong>工具与软件：</strong> Power BI 与 Excel 商业数据分析与可视化、UiPath 流程自动化</span>
+                </p>
             </section>
 
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Honours & Awards</h2>
+                <h2 class="section-title"><span lang="en">Honours & Awards</span><span lang="zh">荣誉与奖项</span></h2>
                 <ul>
-                    <li><strong>Science and Engineering Scholarship (MOE Sponsored):</strong> A 4-year full scholarship covering university education (Aug 2023 – May 2027)</li>
-                    <li><strong>Senior-Middle 1 Scholarship (MOE Sponsored):</strong> A 4-year full scholarship covering secondary and post-secondary education (Feb 2019 – Nov 2022)</li>
-                    <li><strong>TrustHP:</strong> First place winner of NTU WIT x HP ideathon competition, out of 20 teams (Feb 2025)</li>
-                    <li><strong>News Wikileaks Cross Analysis:</strong> SMU Datathon 2025 Finalist. Top 10 out of ~70 teams (Feb 2025)</li>
-                    <li><strong>iFound:</strong> SimplifyNext x UiPath RPA Hackathon 2024 Finalist. Top 6 out of 46 teams (Feb 2024 – Mar 2024)</li>
+                    <li>
+                        <span lang="en"><strong>Science and Engineering Scholarship (MOE Sponsored):</strong> A 4-year full scholarship covering university education (Aug 2023 – May 2027)</span>
+                        <span lang="zh"><strong>科学与工程奖学金 (新加坡教育部资助)：</strong> 4年大学全额奖学金 (2023年8月 – 2027年5月)</span>
+                    </li>
+                    <li>
+                        <span lang="en"><strong>Senior-Middle 1 Scholarship (MOE Sponsored):</strong> A 4-year full scholarship covering secondary and post-secondary education (Feb 2019 – Nov 2022)</span>
+                        <span lang="zh"><strong>SM1 奖学金 (新加坡教育部资助)：</strong> 4年全额奖学金，覆盖中学与初级学院教育 (2019年2月 – 2022年11月)</span>
+                    </li>
+                    <li>
+                        <span lang="en"><strong>TrustHP:</strong> First place winner of NTU WIT x HP ideathon competition, out of 20 teams (Feb 2025)</span>
+                        <span lang="zh"><strong>TrustHP 项目：</strong> 荣获南大 WIT x 惠普 (HP) 创意黑客松大赛第一名 (从20支参赛队伍中脱颖而出，2025年2月)</span>
+                    </li>
+                    <li>
+                        <span lang="en"><strong>News Wikileaks Cross Analysis:</strong> SMU Datathon 2025 Finalist. Top 10 out of ~70 teams (Feb 2025)</span>
+                        <span lang="zh"><strong>新闻与维基解密交叉分析项目：</strong> 入围新加坡管理大学 (SMU) 2025 数据马拉松决赛 (排名前10 / 约70支队伍，2025年2月)</span>
+                    </li>
+                    <li>
+                        <span lang="en"><strong>iFound:</strong> SimplifyNext x UiPath RPA Hackathon 2024 Finalist. Top 6 out of 46 teams (Feb 2024 – Mar 2024)</span>
+                        <span lang="zh"><strong>iFound 项目：</strong> 入围 SimplifyNext x UiPath 机器人流程自动化黑客松决赛 (排名前6 / 46支队伍，2024年2月 – 3月)</span>
+                    </li>
                 </ul>
             </section>
 
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Selected Academic Projects</h2>
+                <h2 class="section-title"><span lang="en">Selected Academic Projects</span><span lang="zh">精选学术与竞赛项目</span></h2>
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>Final Year Project</h3>
-                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">Feb 2026 – Today</p>
-                    <p>Work in Progress: Natural Language Processing to detect and extract financial news and predict impacts.</p>
+                    <h3>
+                        <span lang="en">Final Year Project</span>
+                        <span lang="zh">毕业设计项目 (Final Year Project)</span>
+                    </h3>
+                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">
+                        <span lang="en">Feb 2026 – Today</span>
+                        <span lang="zh">2026年2月 – 至今</span>
+                    </p>
+                    <p lang="en">Work in Progress: Natural Language Processing to detect and extract financial news and predict impacts.</p>
+                    <p lang="zh">进行中项目：利用自然语言处理技术（NLP）对金融新闻进行检测与提取，并预测其市场影响。</p>
                 </div>
 
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>SC2006 EatWellthy</h3>
-                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">Sep 2024 – Nov 2024</p>
-                    <p>Applied MERN Stack (MongoDB, Express.js, React.js, Node.js). Developed an interactive web app to revolutionize healthy eating through meal planning, nutrition tracking, AI-powered personalized plans and chatbot. Integrated Nutritionix for food data, OpenAI for chatbot, Google APIs for SSO, location and calendar sync. Agile Development Team Leader of 6 and deployed independently.</p>
+                    <h3>
+                        <span lang="en">SC2006 EatWellthy</span>
+                        <span lang="zh">SC2006 EatWellthy 项目</span>
+                    </h3>
+                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">
+                        <span lang="en">Sep 2024 – Nov 2024</span>
+                        <span lang="zh">2024年9月 – 11月</span>
+                    </p>
+                    <p lang="en">Applied MERN Stack (MongoDB, Express.js, React.js, Node.js). Developed an interactive web app to revolutionize healthy eating through meal planning, nutrition tracking, AI-powered personalized plans and chatbot. Integrated Nutritionix for food data, OpenAI for chatbot, Google APIs for SSO, location and calendar sync. Agile Development Team Leader of 6 and deployed independently.</p>
+                    <p lang="zh">应用 MERN 技术栈（MongoDB, Express.js, React.js, Node.js）独立部署的互动式 Web 应用程序。通过智能膳食规划、实时营养追踪、AI 驱动的个性化推荐与智能对话助手，颠覆健康饮食体验。深度整合了 Nutritionix 食物数据库、OpenAI 聊天接口、谷歌 API（支持单点登录 SSO、地理定位与日历同步）。作为 6 人敏捷开发团队的组长，带领项目高效推进并独立完成部署。</p>
                 </div>
 
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>News Wikileaks Cross Analysis</h3>
-                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">Feb 2025</p>
-                    <p>SMU Datathon 2025 Finalist (Top 10 out of ~70 teams). Created a python analysis pipeline and a Streamlit application that analyzes the similarity between news and WikiLeaks documents using Fuzzy Matching and Sentence-BERT.</p>
+                    <h3>
+                        <span lang="en">News Wikileaks Cross Analysis</span>
+                        <span lang="zh">新闻与维基解密交叉分析项目</span>
+                    </h3>
+                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">
+                        <span lang="en">Feb 2025</span>
+                        <span lang="zh">2025年2月</span>
+                    </p>
+                    <p lang="en">SMU Datathon 2025 Finalist (Top 10 out of ~70 teams). Created a python analysis pipeline and a Streamlit application that analyzes the similarity between news and WikiLeaks documents using Fuzzy Matching and Sentence-BERT.</p>
+                    <p lang="zh">入围新加坡管理大学 (SMU) 2025 数据马拉松决赛（前10名 / 约70支参赛队伍）。使用 Python 搭建了完整的数据分析流水线，并基于 Streamlit 开发了数据可视化应用，利用模糊匹配（Fuzzy Matching）和 Sentence-BERT 深度表征模型对热点新闻与维基解密泄漏文档之间的相似度进行深度交叉分析。</p>
                 </div>
 
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>iFound</h3>
-                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">Feb 2024 – Mar 2024</p>
-                    <p>SimplifyNext x UiPath RPA Hackathon 2024 Finalist (Top 6 out of 46 teams). An automation app to find potential missing people in Singapore. Built on UiPath, Python and OpenAI to perform website scraping, facial recognition and generate GenAI summarised report.</p>
+                    <h3>
+                        <span lang="en">iFound</span>
+                        <span lang="zh">iFound 项目</span>
+                    </h3>
+                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">
+                        <span lang="en">Feb 2024 – Mar 2024</span>
+                        <span lang="zh">2024年2月 – 3月</span>
+                    </p>
+                    <p lang="en">SimplifyNext x UiPath RPA Hackathon 2024 Finalist (Top 6 out of 46 teams). An automation app to find potential missing people in Singapore. Built on UiPath, Python and OpenAI to perform website scraping, facial recognition and generate GenAI summarised report.</p>
+                    <p lang="zh">入围 SimplifyNext x UiPath 2024 机器人流程自动化黑客松决赛（前6名 / 46支参赛队伍）。针对新加坡失踪人口搜寻设计的一款自动化应用。深度结合了 UiPath 流程自动化、Python 网络爬虫、人脸识别算法及 OpenAI 大语言模型，实现了网页数据抓取、肖像比对与智能生成 GenAI 结构化摘要报告。</p>
                 </div>
 
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>TrustHP</h3>
-                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">Feb 2025</p>
-                    <p>First place winner of NTU WIT x HP ideathon competition, out of 20 teams. Conducted market analysis and proposed innovative and feasible security-first framework proposal, recognised by judges from Hewlett-Packard SG.</p>
+                    <h3>
+                        <span lang="en">TrustHP</span>
+                        <span lang="zh">TrustHP 项目</span>
+                    </h3>
+                    <p style="color: var(--text-secondary); font-style: italic; margin-top: 0;">
+                        <span lang="en">Feb 2025</span>
+                        <span lang="zh">2025年2月</span>
+                    </p>
+                    <p lang="en">First place winner of NTU WIT x HP ideathon competition, out of 20 teams. Conducted market analysis and proposed innovative and feasible security-first framework proposal, recognised by judges from Hewlett-Packard SG.</p>
+                    <p lang="zh">荣获南大 WIT x 惠普 (HP) 创意黑客松大赛冠军（从 20 支决赛队伍中脱颖而出）。完成了详尽的打印安全行业市场分析，并提出了一套极具创新性与可行性的“安全第一”软硬件框架方案，获得了来自新加坡惠普公司 (HP SG) 业界资深评委的高度肯定与好评。</p>
                 </div>
             </section>
 
             <hr style="margin:2rem 0;border:none;border-top:1px solid var(--border-color);">
 
             <section>
-                <h2 class="section-title">Co-curricular Activities</h2>
+                <h2 class="section-title"><span lang="en">Co-curricular Activities</span><span lang="zh">课外活动经历</span></h2>
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>Institution of Engineering and Technology NTU Base (IET @ NTU)</h3>
-                    <p style="margin: 0.25rem 0;"><strong>Welfare Manager</strong> (Aug 2023 – Aug 2024) | <strong>Welfare Head</strong> (Aug 2024 – Aug 2025) | <strong>Vice President</strong> (Aug 2025 – Today)</p>
+                    <h3>
+                        <span lang="en">Institution of Engineering and Technology NTU Base (IET @ NTU)</span>
+                        <span lang="zh">英国工程技术学会南洋理工大学学生分会 (IET @ NTU)</span>
+                    </h3>
+                    <p style="margin: 0.25rem 0;">
+                        <strong><span lang="en">Welfare Manager</span><span lang="zh">福利干事</span></strong> (Aug 2023 – Aug 2024) | 
+                        <strong><span lang="en">Welfare Head</span><span lang="zh">福利部部长</span></strong> (Aug 2024 – Aug 2025) | 
+                        <strong><span lang="en">Vice President</span><span lang="zh">副主席</span></strong> (Aug 2025 – Today)
+                    </p>
                     <ul>
-                        <li>Emcee in Annual General Meeting 2023, facilitated event’s proceedings and engaged with guests.</li>
-                        <li>Led welfare team for catering and ice-breaking games arrangements in Annual General Meeting 2024.</li>
-                        <li>Led liaison teams to plan and conduct company onsite visits in 2025.</li>
+                        <li>
+                            <span lang="en">Emcee in Annual General Meeting 2023, facilitated event’s proceedings and engaged with guests.</span>
+                            <span lang="zh">担任 2023 年周年大会的主持人，主持会议议程并与参会业界来宾密切互动。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Led welfare team for catering and ice-breaking games arrangements in Annual General Meeting 2024.</span>
+                            <span lang="zh">领导福利团队筹划 2024 年周年大会的餐饮保障与破冰游戏环节，反响热烈。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Led liaison teams to plan and conduct company onsite visits in 2025.</span>
+                            <span lang="zh">领导外联联络团队筹划并成功开展了 2025 年度企业实地参访活动。</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div style="margin-bottom: 1.5rem;">
-                    <h3>NYJC Chinese Cultural Society</h3>
-                    <p style="margin: 0.25rem 0;"><strong>President</strong> (Feb 2022 – Nov 2022)</p>
+                    <h3>
+                        <span lang="en">NYJC Chinese Cultural Society</span>
+                        <span lang="zh">南洋初级学院华文学会 (Chinese Cultural Society)</span>
+                    </h3>
+                    <p style="margin: 0.25rem 0;">
+                        <strong><span lang="en">President</span><span lang="zh">主席</span></strong> (Feb 2022 – Nov 2022)
+                    </p>
                     <ul>
-                        <li>Led the club of 35 members to promote Chinese culture in college community, and organizing Chinese Drama performances, including Singapore Youth Festival 2022, NYJC Open House.</li>
-                        <li>Conducted filming and editing for CCS promotional video and CCS annual performance 2022.</li>
+                        <li>
+                            <span lang="en">Led the club of 35 members to promote Chinese culture in college community, and organizing Chinese Drama performances, including Singapore Youth Festival 2022, NYJC Open House.</span>
+                            <span lang="zh">带领 35 名学会成员在学院社区积极推广华族文化，组织策划了包括 2022 年新加坡青年节（SYF）华语戏剧表演、NYJC 开放日等大型文化交流与演出。</span>
+                        </li>
+                        <li>
+                            <span lang="en">Conducted filming and editing for CCS promotional video and CCS annual performance 2022.</span>
+                            <span lang="zh">独立主导了学会官方宣传视频的拍摄与后期剪辑工作，并完成了 2022 年年度汇报演出的多媒体摄制。</span>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -274,7 +517,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; <span id="year">2025</span> Zhao Qixian. Built with passion.</p>
+                <p>&copy; <span id="year">2025</span> Zhao Qixian. <span lang="en">Built with passion.</span><span lang="zh">用对技术的热情悉心构建。</span></p>
                 <div class="footer-links">
                     <a href="https://github.com/ZhaoQixian" target="_blank"><i class="fab fa-github"></i></a>
                 </div>

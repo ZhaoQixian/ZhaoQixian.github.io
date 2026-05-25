@@ -306,6 +306,32 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial call
 
+    // Language Switcher Logic
+    const langBtn = document.getElementById('lang-btn');
+    function updateLangBtnText(lang) {
+        if (langBtn) {
+            const spanText = langBtn.querySelector('span');
+            if (spanText) {
+                spanText.textContent = lang === 'en' ? '中文' : 'English';
+            }
+        }
+    }
+
+    if (langBtn) {
+        langBtn.addEventListener('click', function() {
+            const currentLang = document.documentElement.getAttribute('lang') || 'en';
+            const newLang = currentLang === 'en' ? 'zh' : 'en';
+            document.documentElement.setAttribute('lang', newLang);
+            localStorage.setItem('lang', newLang);
+            updateLangBtnText(newLang);
+        });
+    }
+
+    // Set initial language from storage
+    const savedLang = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('lang', savedLang);
+    updateLangBtnText(savedLang);
+
     console.log('🚀 Portfolio website loaded successfully!');
 });
 
