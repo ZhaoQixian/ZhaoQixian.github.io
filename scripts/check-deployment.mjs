@@ -1,6 +1,13 @@
-const urls = [
+const urls = (process.env.DEPLOYMENT_URLS || [
     'https://zhaoqixian.github.io/',
     'https://zhaoqixian.com/'
+].join(','))
+    .split(',')
+    .map(url => url.trim())
+    .filter(Boolean);
+const expectedMarkers = [
+    '<meta property="og:image" content="https://zhaoqixian.com/assets/images/og-image.svg">',
+    'Download PDF'
 ];
 const timeoutMs = 5 * 60 * 1000;
 const retryDelayMs = 15 * 1000;
@@ -17,8 +24,10 @@ async function checkUrl(url) {
     if (!response.ok) {
         throw new Error(`${url} returned HTTP ${response.status}`);
     }
-    if (!body.includes('<meta name="description"')) {
-        throw new Error(`${url} does not contain the expected site metadata`);
+    for (const marker of expectedMarkers) {
+        if (!body.includes(marker)) {
+            throw new Error(`${url} does not contain expected marker: ${marker}`);
+        }
     }
 }
 
