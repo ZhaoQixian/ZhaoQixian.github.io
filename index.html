@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
         // Prevent Flash of Untranslated Content (FOUT)
-        document.documentElement.setAttribute('lang', localStorage.getItem('lang') || 'en');
+        try {
+            document.documentElement.setAttribute('lang', localStorage.getItem('lang') || 'en');
+        } catch (error) {
+            document.documentElement.setAttribute('lang', 'en');
+        }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Zhao Qixian, a Data Science and AI undergraduate at Nanyang Technological University.">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://zhaoqixian.com/">
     <title>Zhao Qixian - Data Science & AI Undergraduate</title>
     <!-- Preload main stylesheet for faster first render -->
     <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <noscript>
+        <link rel="stylesheet" href="styles.css">
+    </noscript>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Preconnect to Google Fonts for lower latency -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="/"><span lang="en">Zhao Qixian</span><span lang="zh">赵启先</span></a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="site-nav">
                 <li><a href="/"><span lang="en">Home</span><span lang="zh">首页</span></a></li>
                 <li><a href="#projects"><span lang="en">Projects</span><span lang="zh">项目</span></a></li>
                 <li><a href="#contact"><span lang="en">Contact</span><span lang="zh">联系我</span></a></li>
@@ -34,11 +45,12 @@
                     <i class="fas fa-globe"></i> <span>中文</span>
                 </button>
             </div>
-            <div class="hamburger" aria-label="Toggle navigation">
+            <button type="button" class="hamburger" aria-label="Toggle navigation" aria-controls="site-nav"
+                aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -55,10 +67,14 @@
                         <span lang="en">Data Science & AI Undergraduate | Minor in Business — NTU S&E (Year 4)</span>
                         <span lang="zh">数据科学与人工智能本科生 | 商业副修 — 南洋理工大学 (大四)</span>
                     </h2>
-                    <p lang="en">Bachelor of Data Science & AI (NTU) — Year 4. Minor in Business. CGPA: 4.55/5.00. Recipient of the NTU Science & Engineering Scholarship and MOE SM1 scholarship.</p>
-                    <p lang="zh">新加坡南洋理工大学 (NTU) 数据科学与人工智能学士学位 — 大四。副修商科，CGPA: 4.55/5.00。荣获南洋理工大学科学与工程奖学金及新加坡教育部 SM1 全额奖学金。</p>
-                    <p lang="en">Technical highlights: Python, R, Java, JavaScript, PostgreSQL, Power BI, UiPath, Pandas/NumPy/Scikit-learn, and experience with LLMs, vector search and RAG. I also have exposure to Linux, C/C++, prompt engineering, and cybersecurity fundamentals.</p>
-                    <p lang="zh">技术亮点：熟练掌握 Python, R, Java, JavaScript, PostgreSQL, Power BI, UiPath, Pandas/NumPy/Scikit-learn，具备大语言模型（LLM）、向量检索与 RAG 应用的开发经验，同时涉猎 Linux, C/C++, 提示词工程和网络安全基础。</p>
+                    <p lang="en">Bachelor of Data Science & AI (NTU) — Year 4. Minor in Business. CGPA: 4.55/5.00.
+                        Recipient of the NTU Science & Engineering Scholarship and MOE SM1 scholarship.</p>
+                    <p lang="zh">新加坡南洋理工大学 (NTU) 数据科学与人工智能学士学位 — 大四。副修商科，CGPA: 4.55/5.00。荣获南洋理工大学科学与工程奖学金及新加坡教育部 SM1
+                        全额奖学金。</p>
+                    <p lang="en">Technical highlights: Python, R, Java, JavaScript, Linux, SQL, Power BI, Excel, and UiPath,
+                        with experience in predictive maintenance modelling, enterprise document verification, and
+                        LLM-powered RAG systems.</p>
+                    <p lang="zh">技术亮点：熟练掌握 Python、R、Java、JavaScript、Linux、SQL、Power BI、Excel 和 UiPath，具备预测性维护建模、企业级文档验证及基于大语言模型的 RAG 系统开发经验。</p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">
                             <span lang="en">View My Work</span>
@@ -93,21 +109,23 @@
             </div>
         </section>
 
-        
+
 
         <!-- Projects Section -->
         <section id="projects" class="projects">
             <div class="container">
                 <h2 class="section-title"><span lang="en">Featured Projects</span><span lang="zh">精选项目</span></h2>
                 <div class="projects-grid">
-                    
+
                     <div class="project-card featured">
                         <div class="project-image">
                             <i class="fas fa-utensils"></i>
                         </div>
                         <div class="project-content">
                             <h3>EatWellthy</h3>
-                            <p lang="en">AI-powered personalised meal planning and nutrition tracking web app built with the MERN stack. Features include customisable meal plans, real-time nutrition analytics, and AI chatbot support.</p>
+                            <p lang="en">AI-powered personalised meal planning and nutrition tracking web app built with
+                                the MERN stack. Features include customisable meal plans, real-time nutrition analytics,
+                                and AI chatbot support.</p>
                             <p lang="zh">基于 MERN 技术栈开发的 AI 智能个性化膳食规划与营养追踪系统。拥有定制化膳食方案、实时营养数据分析及智能 AI 聊天助手等核心功能。</p>
                             <div class="project-tech">
                                 <span class="tech-tag">JavaScript</span>
@@ -116,7 +134,8 @@
                                 <span class="tech-tag">AI/ML</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/EatWellthy" target="_blank" class="btn btn-small">
+                                <a href="https://github.com/ZhaoQixian/EatWellthy" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-small">
                                     <span lang="en"><i class="fab fa-github"></i> View Code</span>
                                     <span lang="zh"><i class="fab fa-github"></i> 查看代码</span>
                                 </a>
@@ -134,8 +153,10 @@
                         </div>
                         <div class="project-content">
                             <h3>Steam Game Analysis</h3>
-                            <p lang="en">Comprehensive data analysis project examining Steam gaming data using machine learning techniques. Built for NTU SC1015 course with detailed statistical insights.</p>
-                            <p lang="zh">对 Steam 游戏数据进行深度挖掘与多维度分析的数据科学项目，运用机器学习模型预测游戏趋势，为 NTU SC1015 课程优秀作业，包含详实的数据可视化与统计学洞察。</p>
+                            <p lang="en">Comprehensive data analysis project examining Steam gaming data using machine
+                                learning techniques. Built for NTU SC1015 course with detailed statistical insights.</p>
+                            <p lang="zh">对 Steam 游戏数据进行深度挖掘与多维度分析的数据科学项目，运用机器学习模型预测游戏趋势，为 NTU SC1015
+                                课程优秀作业，包含详实的数据可视化与统计学洞察。</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">Jupyter</span>
@@ -143,7 +164,8 @@
                                 <span class="tech-tag">ML</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/SC1015_Steam_Game_Analysis" target="_blank" class="btn btn-small">
+                                <a href="https://github.com/ZhaoQixian/SC1015_Steam_Game_Analysis" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-small">
                                     <span lang="en"><i class="fab fa-github"></i> View Code</span>
                                     <span lang="zh"><i class="fab fa-github"></i> 查看代码</span>
                                 </a>
@@ -161,7 +183,8 @@
                         </div>
                         <div class="project-content">
                             <h3>Cloud Computing Projects</h3>
-                            <p lang="en">Collection of projects focused on cloud computing concepts, data analysis, and web development using modern technologies and cloud platforms.</p>
+                            <p lang="en">Collection of projects focused on cloud computing concepts, data analysis, and
+                                web development using modern technologies and cloud platforms.</p>
                             <p lang="zh">围绕云计算架构、大数据分布式处理及现代 Web 开发而构建的项目合集，深度应用现代化云平台技术与开发框架。</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
@@ -170,7 +193,8 @@
                                 <span class="tech-tag">Cloud</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/Cloud_Computing" target="_blank" class="btn btn-small">
+                                <a href="https://github.com/ZhaoQixian/Cloud_Computing" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-small">
                                     <span lang="en"><i class="fab fa-github"></i> View Code</span>
                                     <span lang="zh"><i class="fab fa-github"></i> 查看代码</span>
                                 </a>
@@ -184,7 +208,8 @@
                         </div>
                         <div class="project-content">
                             <h3>TotalWealth Database</h3>
-                            <p lang="en">Comprehensive database management system built with TSQL, focusing on financial data management and optimization.</p>
+                            <p lang="en">Comprehensive database management system built with TSQL, focusing on financial
+                                data management and optimization.</p>
                             <p lang="zh">基于 T-SQL 构建的企业级综合资产管理数据库系统，专注于金融数据架构设计、高并发查询优化与存储过程实现。</p>
                             <div class="project-tech">
                                 <span class="tech-tag">TSQL</span>
@@ -192,7 +217,8 @@
                                 <span class="tech-tag">SQL Server</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ZhaoQixian/TotalWealth_Database" target="_blank" class="btn btn-small">
+                                <a href="https://github.com/ZhaoQixian/TotalWealth_Database" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-small">
                                     <span lang="en"><i class="fab fa-github"></i> View Code</span>
                                     <span lang="zh"><i class="fab fa-github"></i> 查看代码</span>
                                 </a>
@@ -208,26 +234,27 @@
             </div>
         </section>
 
-        
-        
+
+
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title"><span lang="en">Get In Touch</span><span lang="zh">保持联系</span></h2>
                 <div class="contact-content">
                     <div class="contact-info">
                         <h3><span lang="en">Let's Connect!</span><span lang="zh">与我联络</span></h3>
-                        <p lang="en">I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and innovation.</p>
+                        <p lang="en">I'm always open to discussing new opportunities, interesting projects, or just
+                            having a chat about technology and innovation.</p>
                         <p lang="zh">我随时欢迎就新的职业机会、有趣的开源项目以及前沿技术创新展开深入的交流与探讨，期待与你的联络！</p>
-                        
-                            <div class="contact-methods">
+
+                        <div class="contact-methods">
                             <div class="contact-method">
                                 <i class="fab fa-github"></i>
                                 <div>
                                     <h4><span lang="en">GitHub</span><span lang="zh">GitHub 代码主页</span></h4>
-                                    <a href="https://github.com/ZhaoQixian" target="_blank">@ZhaoQixian</a>
+                                    <a href="https://github.com/ZhaoQixian" target="_blank" rel="noopener noreferrer">@ZhaoQixian</a>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-method">
                                 <i class="fas fa-envelope"></i>
                                 <div>
@@ -239,14 +266,15 @@
                                 <i class="fab fa-linkedin"></i>
                                 <div>
                                     <h4><span lang="en">LinkedIn</span><span lang="zh">领英 LinkedIn</span></h4>
-                                    <a href="https://www.linkedin.com/in/zhaoqixian/" target="_blank">linkedin.com/in/zhaoqixian</a>
+                                    <a href="https://www.linkedin.com/in/zhaoqixian/"
+                                        target="_blank" rel="noopener noreferrer">linkedin.com/in/zhaoqixian</a>
                                 </div>
                             </div>
                             <div class="contact-method">
                                 <i class="fas fa-globe"></i>
                                 <div>
                                     <h4><span lang="en">Website</span><span lang="zh">个人网站</span></h4>
-                                    <a href="https://zhaoqixian.com" target="_blank">zhaoqixian.com</a>
+                                    <a href="https://zhaoqixian.com" target="_blank" rel="noopener noreferrer">zhaoqixian.com</a>
                                 </div>
                             </div>
                             <div class="contact-method">
@@ -258,12 +286,14 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="contact-cta">
                         <h3><span lang="en">Resume</span><span lang="zh">个人简历</span></h3>
-                        <p lang="en">View or download my resume for a detailed breakdown of experience, education, and projects.</p>
+                        <p lang="en">View or download my resume for a detailed breakdown of experience, education, and
+                            projects.</p>
                         <p lang="zh">在线浏览或下载我的最新简历，了解我在工程实践、学术研究及学科竞赛等领域的详实经历。</p>
-                        <img src="assets/images/MySelfie.jpg" alt="Zhao Qixian" class="contact-selfie contact-selfie--img" width="280" height="280" loading="lazy" />
+                        <img src="assets/images/MySelfie.jpg" alt="Zhao Qixian"
+                            class="contact-selfie contact-selfie--img" width="280" height="280" loading="lazy" />
                         <div class="resume-actions">
                             <a href="resume.html" class="btn btn-primary">
                                 <span lang="en"><i class="fas fa-file-alt"></i> View Resume</span>
@@ -279,9 +309,10 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; <span id="year">2024</span> Zhao Qixian. <span lang="en">Built with passion for innovation.</span><span lang="zh">用对创新的热情悉心构建。</span></p>
+                <p>&copy; <span id="year">2024</span> Zhao Qixian. <span lang="en">Built with passion for
+                        innovation.</span><span lang="zh">用对创新的热情悉心构建。</span></p>
                 <div class="footer-links">
-                    <a href="https://github.com/ZhaoQixian" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/ZhaoQixian" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -293,4 +324,5 @@
 
     <script src="script.js" defer></script>
 </body>
+
 </html>

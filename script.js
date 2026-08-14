@@ -2,19 +2,34 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const prefersReducedMotion = typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (hamburger && navMenu) {
+        function setMenuState(isOpen) {
+            hamburger.classList.toggle('active', isOpen);
+            navMenu.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+        }
+
+        setMenuState(false);
+
         hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            setMenuState(!navMenu.classList.contains('active'));
         });
 
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                setMenuState(false);
             });
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+                setMenuState(false);
+                hamburger.focus();
+            }
         });
     }
 
@@ -30,15 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 window.scrollTo({
                     top: offsetPosition,
-                    behavior: 'smooth'
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
             }
         });
     });
 
     // Navbar background on scroll
+    const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
+        if (!navbar) {
+            return;
+        }
+
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)';
@@ -67,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observerCallback = function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -80,13 +99,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-    }, observerOptions);
+    };
+
+    const observer = 'IntersectionObserver' in window
+        ? new IntersectionObserver(observerCallback, observerOptions)
+        : null;
 
     // Add scroll animation to sections
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
         section.classList.add('scroll-animate');
-        observer.observe(section);
+        if (observer) {
+            observer.observe(section);
+        } else {
+            section.classList.add('visible');
+        }
     });
 
     // Add scroll animation to project cards
@@ -94,17 +121,21 @@ document.addEventListener('DOMContentLoaded', function() {
     projectCards.forEach((card, index) => {
         card.classList.add('scroll-animate');
         card.style.animationDelay = `${index * 0.1}s`;
-        observer.observe(card);
+        if (observer) {
+            observer.observe(card);
+        } else {
+            card.classList.add('visible');
+        }
     });
 
     // Typing animation for hero section
     function typeWriter(element, text, speed = 100) {
         let i = 0;
-        element.innerHTML = '';
+        element.textContent = '';
         
         function type() {
             if (i < text.length) {
-                element.innerHTML += text.charAt(i);
+                element.textContent += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
             }
@@ -114,13 +145,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize typing animation after a short delay
-    setTimeout(() => {
-        const heroTitle = document.querySelector('.hero-content h1');
-        if (heroTitle) {
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 80);
-        }
-    }, 500);
+    if (!prefersReducedMotion) {
+        setTimeout(() => {
+            const language = document.documentElement.getAttribute('lang') || 'en';
+            const heroTitle = document.querySelector(`.hero-content h1 [lang="${language}"] .highlight`);
+            if (heroTitle) {
+                typeWriter(heroTitle, heroTitle.textContent, 80);
+            }
+        }, 500);
+    }
 
     // Add hover effects to project cards
     const projectCardsHover = document.querySelectorAll('.project-card');
@@ -134,23 +167,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add click tracking for external links
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-    externalLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            console.log('External link clicked:', this.href);
-        });
-    });
-
-    // Dynamic year for copyright
-    const currentYear = new Date().getFullYear();
-    const copyrightElement = document.querySelector('.footer-content p');
-    if (copyrightElement) {
-        copyrightElement.innerHTML = copyrightElement.innerHTML.replace('2024', currentYear);
-    }
-
     // Add loading animation
     function addLoadingAnimation() {
+        if (prefersReducedMotion) {
+            return;
+        }
+
         const body = document.body;
         body.style.opacity = '0';
         
@@ -164,6 +186,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Parallax effect for hero section
     window.addEventListener('scroll', function() {
+        if (prefersReducedMotion) {
+            return;
+        }
+
         const scrolled = window.pageYOffset;
         const rate = scrolled * -0.5;
         const heroSection = document.querySelector('.hero');
@@ -196,33 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Add CSS for active nav links
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-menu a.active {
-            color: var(--primary-color);
-            position: relative;
-        }
-        
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--primary-color);
-            border-radius: 1px;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu a.active::after {
-                display: none;
-            }
-        }
-    `;
-    document.head.appendChild(style);
 
     // Easter egg: Konami code
     let konamiCode = [];
@@ -278,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add resize handler for responsive behavior
     function handleResize() {
         const hero = document.querySelector('.hero');
-        const navbar = document.querySelector('.navbar');
         
         if (window.innerWidth <= 768) {
             // Mobile adjustments
@@ -299,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navMenu && hamburger) {
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         }
     }
@@ -317,40 +316,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function getSavedLanguage() {
+        try {
+            return localStorage.getItem('lang') || 'en';
+        } catch (error) {
+            return 'en';
+        }
+    }
+
+    function saveLanguage(lang) {
+        try {
+            localStorage.setItem('lang', lang);
+        } catch (error) {
+            // Storage may be unavailable in privacy-restricted contexts.
+        }
+    }
+
     if (langBtn) {
         langBtn.addEventListener('click', function() {
             const currentLang = document.documentElement.getAttribute('lang') || 'en';
             const newLang = currentLang === 'en' ? 'zh' : 'en';
             document.documentElement.setAttribute('lang', newLang);
-            localStorage.setItem('lang', newLang);
+            saveLanguage(newLang);
             updateLangBtnText(newLang);
         });
     }
 
     // Set initial language from storage
-    const savedLang = localStorage.getItem('lang') || 'en';
+    const savedLang = getSavedLanguage();
     document.documentElement.setAttribute('lang', savedLang);
     updateLangBtnText(savedLang);
-
-    console.log('🚀 Portfolio website loaded successfully!');
 });
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply debouncing to scroll events
-const debouncedScroll = debounce(() => {
-    // Scroll event handlers here
-}, 10);
-
-window.addEventListener('scroll', debouncedScroll);
