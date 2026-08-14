@@ -307,6 +307,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Language Switcher Logic
     const langBtn = document.getElementById('lang-btn');
+    const pageMetadata = {
+        home: {
+            en: {
+                title: 'Zhao Qixian - Data Science & AI Undergraduate',
+                description: 'Portfolio of Zhao Qixian, a Data Science and AI undergraduate at Nanyang Technological University.'
+            },
+            zh: {
+                title: '赵启先 - 数据科学与人工智能本科生',
+                description: '赵启先的个人作品集，展示其在南洋理工大学数据科学与人工智能领域的项目、研究与工程经历。'
+            }
+        },
+        resume: {
+            en: {
+                title: 'Resume - Zhao Qixian',
+                description: 'Resume of Zhao Qixian, a Data Science and AI undergraduate at Nanyang Technological University.'
+            },
+            zh: {
+                title: '简历 - 赵启先',
+                description: '赵启先的个人简历，涵盖其在数据科学、人工智能、软件工程和学术研究方面的经历。'
+            }
+        }
+    };
+
+    function updatePageMetadata(lang) {
+        const page = window.location.pathname.endsWith('resume.html') ? 'resume' : 'home';
+        const metadata = pageMetadata[page][lang];
+        const description = document.querySelector('meta[name="description"]');
+        const openGraphTitle = document.querySelector('meta[property="og:title"]');
+        const openGraphDescription = document.querySelector('meta[property="og:description"]');
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+
+        document.documentElement.setAttribute('lang', lang);
+        document.title = metadata.title;
+
+        if (description) {
+            description.setAttribute('content', metadata.description);
+        }
+        if (openGraphTitle) {
+            openGraphTitle.setAttribute('content', metadata.title);
+        }
+        if (openGraphDescription) {
+            openGraphDescription.setAttribute('content', metadata.description);
+        }
+        if (twitterTitle) {
+            twitterTitle.setAttribute('content', metadata.title);
+        }
+        if (twitterDescription) {
+            twitterDescription.setAttribute('content', metadata.description);
+        }
+    }
+
     function updateLangBtnText(lang) {
         if (langBtn) {
             const spanText = langBtn.querySelector('span');
@@ -336,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
         langBtn.addEventListener('click', function() {
             const currentLang = document.documentElement.getAttribute('lang') || 'en';
             const newLang = currentLang === 'en' ? 'zh' : 'en';
-            document.documentElement.setAttribute('lang', newLang);
+            updatePageMetadata(newLang);
             saveLanguage(newLang);
             updateLangBtnText(newLang);
         });
@@ -344,6 +396,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set initial language from storage
     const savedLang = getSavedLanguage();
-    document.documentElement.setAttribute('lang', savedLang);
+    updatePageMetadata(savedLang);
     updateLangBtnText(savedLang);
 });

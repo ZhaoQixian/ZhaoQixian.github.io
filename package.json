@@ -1,0 +1,7 @@
+{
+  "name": "zhaoqixian-portfolio",
+  "private": true,
+  "scripts": {
+    "check": "node scripts/check-site.mjs && node --check script.js"
+  }
+}
