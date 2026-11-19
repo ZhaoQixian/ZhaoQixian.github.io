@@ -4,7 +4,7 @@ const urls = (process.env.DEPLOYMENT_URLS || [
     .split(',')
     .map(url => url.trim())
     .filter(Boolean);
-const redirectTarget = 'https://zhaoqixian.com';
+const redirectHost = 'zhaoqixian.com';
 const timeoutMs = 5 * 60 * 1000;
 const retryDelayMs = 15 * 1000;
 const deadline = Date.now() + timeoutMs;
@@ -17,11 +17,12 @@ async function checkUrl(url) {
     });
 
     if (response.status !== 301) {
-        throw new Error(`${url} returned HTTP ${response.status}, expected 301 redirect to ${redirectTarget}`);
+        throw new Error(`${url} returned HTTP ${response.status}, expected 301 redirect to ${redirectHost}`);
     }
     const location = response.headers.get('location');
-    if (!location || !location.startsWith(redirectTarget)) {
-        throw new Error(`${url} redirected to ${location}, expected ${redirectTarget}`);
+    const targetHost = location ? new URL(location).hostname : null;
+    if (targetHost !== redirectHost) {
+        throw new Error(`${url} redirected to ${location}, expected host ${redirectHost}`);
     }
 }
 
