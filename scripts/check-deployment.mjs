@@ -4,10 +4,7 @@ const urls = (process.env.DEPLOYMENT_URLS || [
     .split(',')
     .map(url => url.trim())
     .filter(Boolean);
-const expectedMarkers = [
-    '<meta property="og:image" content="https://zhaoqixian.github.io/assets/images/og-image.svg">',
-    'Download PDF'
-];
+const redirectTarget = 'https://zhaoqixian.com';
 const timeoutMs = 5 * 60 * 1000;
 const retryDelayMs = 15 * 1000;
 const deadline = Date.now() + timeoutMs;
@@ -16,17 +13,15 @@ let deploymentPassed = false;
 async function checkUrl(url) {
     const response = await fetch(url, {
         headers: { 'user-agent': 'zhaoqixian-site-deployment-check' },
-        redirect: 'follow'
+        redirect: 'manual'
     });
-    const body = await response.text();
 
-    if (!response.ok) {
-        throw new Error(`${url} returned HTTP ${response.status}`);
+    if (response.status !== 301) {
+        throw new Error(`${url} returned HTTP ${response.status}, expected 301 redirect to ${redirectTarget}`);
     }
-    for (const marker of expectedMarkers) {
-        if (!body.includes(marker)) {
-            throw new Error(`${url} does not contain expected marker: ${marker}`);
-        }
+    const location = response.headers.get('location');
+    if (!location || !location.startsWith(redirectTarget)) {
+        throw new Error(`${url} redirected to ${location}, expected ${redirectTarget}`);
     }
 }
 
